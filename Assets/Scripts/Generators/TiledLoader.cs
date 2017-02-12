@@ -42,11 +42,12 @@ public class TiledLoader : MonoBehaviour {
 			for (int j = 0; j < width; j++) {
 				// need the lookup
 				long tile = (long)data[counter];
+				tile--;
 				string index = tile.ToString ();
 				Dictionary<string, System.Object> thisTile = tiles[index] as Dictionary<string, System.Object>;
 				string etid = thisTile ["ETID"] as String;
 				int GOindex = Int32.Parse (etid);
-				//Debug.Log (GOindex);
+				Debug.Log (GOindex);
 
 				GameObject.Instantiate (this.gos [GOindex], this.gameObject.transform.position+(j*Vector3.right*15)+(i*Vector3.forward*15), this.gameObject.transform.rotation);
 				// instantiate
