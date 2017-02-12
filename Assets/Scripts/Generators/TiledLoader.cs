@@ -9,19 +9,23 @@ public class TiledLoader : MonoBehaviour {
 	public string fileName;
 	public GameObject[] gos;
 	// Use this for initialization
-	void Start () {
-		loadFromFile (fileName);
+	IEnumerator Start () {
+		Debug.Log ("Top of the method");
+		yield return StartCoroutine(loadFromFile());
+		//loadFromFile ();
+		Debug.Log("Coroutine running");
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		
+
 	}
 
-	void loadFromFile(string filename)
+	IEnumerator loadFromFile()
 	{
 		// load in from file
-		string text = System.IO.File.ReadAllText(filename);
+		yield return new WaitForEndOfFrame();
+		string text = System.IO.File.ReadAllText(fileName);
 		// parse from JSON
 		var dict = Json.Deserialize(text) as Dictionary <string, System.Object>;
 			// build tileSet
@@ -48,14 +52,18 @@ public class TiledLoader : MonoBehaviour {
 				string etid = thisTile ["ETID"] as String;
 				int GOindex = Int32.Parse (etid);
 				//Debug.Log (GOindex);
-
-				GameObject.Instantiate (this.gos [GOindex], this.gameObject.transform.position+(j*Vector3.right*15)+(i*Vector3.forward*15), this.gameObject.transform.rotation);
+				GameObject go = this.gos[GOindex];
+				//Debug.Log (go.name);
+				GameObject.Instantiate (go, this.gameObject.transform.position+(j*Vector3.right*15)+(i*Vector3.forward*15), this.gameObject.transform.rotation);
 				// instantiate
 				counter++;
+				//yield return new WaitForEndOfFrame ();
 			}
 
 		}
 		//
+		yield return new WaitForEndOfFrame();
+
 	}
 		
 }

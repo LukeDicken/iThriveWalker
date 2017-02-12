@@ -114,43 +114,43 @@
             {
              "10":
                 {
-                 "image":"..\/..\/..\/Design\/PinkYarrow.png"
+                 "image":"..\/Sprites\/Palette\/PinkYarrow.png"
                 },
              "11":
                 {
-                 "image":"..\/..\/..\/Design\/PaleDogwood.png"
+                 "image":"..\/Sprites\/Palette\/PaleDogwood.png"
                 },
              "12":
                 {
-                 "image":"..\/..\/..\/Design\/Hazelnut.png"
+                 "image":"..\/Sprites\/Palette\/Hazelnut.png"
                 },
              "13":
                 {
-                 "image":"..\/..\/..\/Design\/IslandParadise.png"
+                 "image":"..\/Sprites\/Palette\/IslandParadise.png"
                 },
              "14":
                 {
-                 "image":"..\/..\/..\/Design\/Niagara.png"
+                 "image":"..\/Sprites\/Palette\/Niagara.png"
                 },
              "15":
                 {
-                 "image":"..\/..\/..\/Design\/LapisBlue.png"
+                 "image":"..\/Sprites\/Palette\/LapisBlue.png"
                 },
              "16":
                 {
-                 "image":"..\/..\/..\/Design\/Kale.png"
+                 "image":"..\/Sprites\/Palette\/Kale.png"
                 },
              "17":
                 {
-                 "image":"..\/..\/..\/Design\/Greenery.png"
+                 "image":"..\/Sprites\/Palette\/Greenery.png"
                 },
              "18":
                 {
-                 "image":"..\/..\/..\/Design\/Flame.png"
+                 "image":"..\/Sprites\/Palette\/Flame.png"
                 },
              "19":
                 {
-                 "image":"..\/..\/..\/Design\/PrimroseYellow.png"
+                 "image":"..\/Sprites\/Palette\/PrimroseYellow.png"
                 }
             },
          "tilewidth":32

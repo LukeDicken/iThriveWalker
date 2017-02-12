@@ -41,6 +41,14 @@ namespace UnityStandardAssets.Characters.FirstPerson
         private float m_NextStep;
         private bool m_Jumping;
         private AudioSource m_AudioSource;
+		private bool moving;
+
+		public bool Moving
+		{
+			get {
+				return moving;
+			}
+		}
 
         // Use this for initialization
         private void Start()
@@ -56,6 +64,8 @@ namespace UnityStandardAssets.Characters.FirstPerson
             m_AudioSource = GetComponent<AudioSource>();
 			m_MouseLook.Init(transform , m_Camera.transform);
         }
+
+
 
 
         // Update is called once per frame
@@ -98,7 +108,10 @@ namespace UnityStandardAssets.Characters.FirstPerson
             GetInput(out speed);
             // always move along the camera forward as it is the direction that it being aimed at
             Vector3 desiredMove = transform.forward*m_Input.y + transform.right*m_Input.x;
-
+			moving = false;
+			if (desiredMove != Vector3.zero) {
+				moving = true;
+			}
             // get a normal for the surface that is being touched to move along it
             RaycastHit hitInfo;
             Physics.SphereCast(transform.position, m_CharacterController.radius, Vector3.down, out hitInfo,
