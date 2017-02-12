@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Generator : MonoBehaviour {
+public class TiledLoader : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
