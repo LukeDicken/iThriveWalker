@@ -25,8 +25,8 @@ public class DayNightStart : MonoBehaviour {
 		checkTime ();
 		UpdateLights ();
 
-		turnSpeed = 360.0f / (minutesInDay * 60.0f) * Time.deltaTime;
-		//turnSpeed = startingAngle / (minutesInDay * 60.0f) * Time.deltaTime;
+		//turnSpeed = 360.0f / (minutesInDay * 60.0f) * Time.deltaTime;
+		turnSpeed = startingAngle / (minutesInDay * 60.0f) * Time.deltaTime;
 	
 		transform.RotateAround (transform.position, transform.right, turnSpeed*-1.0f);
 
@@ -51,9 +51,9 @@ public class DayNightStart : MonoBehaviour {
 	}
 	//just reversed these booleans to make everything start with night
 	bool isNight(){
-		bool c = true;
+		bool c = false;
 		if (percentageOfDay > 0.5){
-			c = false;
+			c = true;
 		}
 		return c;
 	}
