@@ -5,10 +5,11 @@ using UnityEngine;
 using MiniJSON;
 using UnityEngine.Analytics;
 
-public class TiledLoader : MonoBehaviour {
+public class WorldManager : MonoBehaviour {
 
 	public string fileName;
 	public GameObject[] gos;
+	public int[,] map;
 	// Use this for initialization
 	IEnumerator Start () {
 		Debug.Log ("Top of the method");
