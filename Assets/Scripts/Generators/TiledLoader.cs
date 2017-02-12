@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System;
 using UnityEngine;
 using MiniJSON;
+using UnityEngine.Analytics;
 
 public class TiledLoader : MonoBehaviour {
 
@@ -61,7 +62,10 @@ public class TiledLoader : MonoBehaviour {
 			}
 
 		}
-		//
+		int dataHash = data.GetHashCode ();
+		IDictionary<string, System.Object> eventData = new Dictionary<string, object> ();
+		eventData.Add ("mapHash", dataHash);
+		Analytics.CustomEvent ("Tiled map loaded", eventData); 
 		yield return new WaitForEndOfFrame();
 
 	}
