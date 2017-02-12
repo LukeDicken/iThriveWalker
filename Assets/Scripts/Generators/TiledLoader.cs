@@ -57,11 +57,12 @@ public class TiledLoader : MonoBehaviour {
 				GameObject.Instantiate (go, this.gameObject.transform.position+(j*Vector3.right*15)+(i*Vector3.forward*15), this.gameObject.transform.rotation);
 				// instantiate
 				counter++;
-				yield return new WaitForEndOfFrame ();
+				//yield return new WaitForEndOfFrame ();
 			}
 
 		}
 		//
+		yield return new WaitForEndOfFrame();
 
 	}
 		
