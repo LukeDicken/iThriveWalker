@@ -57,6 +57,7 @@ public class CuriositySpawner : MonoBehaviour {
 			// pick a location on the unit circle * radius
 			Vector2 r = Random.insideUnitCircle * spawnRadius;
 			Vector3 pos = new Vector3(r.x, 0, r.y) + player.transform.position;
+            pos.y = 0;
 			// ask WorldManager if that type is placeable
 			// if yes, spawn a random object
 			// ensure a minimum distance
