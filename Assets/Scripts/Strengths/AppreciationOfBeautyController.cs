@@ -10,23 +10,25 @@ public class AppreciationOfBeautyController : MonoBehaviour
 	public float timeToDayMin = 10f;
 
 	public GameObject dayNight;
+    private DayNightStart dns;
+    private FirstPersonController firstPersonController;
 
 	float timeSinceMovement = 0f;
 
 	void Start() 
 	{
 		timeSinceMovement = 0f;
-	}
+        dns = dayNight.GetComponent<DayNightStart>();
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        firstPersonController = player.GetComponent<FirstPersonController>();
+    }
 	
 	void Update()
 	{
-		GameObject player = GameObject.FindGameObjectWithTag("Player");
-		FirstPersonController firstPersonController = player.GetComponent<FirstPersonController>();
-
 		if (firstPersonController.Moving)
 		{
 			timeSinceMovement = 0f;
-			dayNight.GetComponent<DayNightStart>().minutesInDay = minutesInDayMax;
+			dns.minutesInDay = minutesInDayMax;
 		} else
 		{
 			timeSinceMovement += Time.deltaTime;
@@ -35,7 +37,7 @@ public class AppreciationOfBeautyController : MonoBehaviour
 				timeSinceMovement = timeToDayMin;
 
 			float day = (minutesInDayMin - minutesInDayMax)*timeSinceMovement/timeToDayMin + minutesInDayMax;
-			dayNight.GetComponent<DayNightStart>().minutesInDay = day;
+			dns.minutesInDay = day;
 		}
 	}
 }
