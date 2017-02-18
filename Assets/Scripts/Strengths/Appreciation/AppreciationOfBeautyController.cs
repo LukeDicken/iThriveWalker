@@ -1,4 +1,18 @@
-﻿using System.Collections;
+﻿/*
+ * 
+ * AppreciationOfBeautyController.cs -- Provides code to support the "Appreciation of Beauty" strength
+ * Created 2/11/17
+ * 
+ * This was written by Brie Code not Luke.
+ * 
+ * The aim of this class is to proxy the Appreciation of Beauty strength in a
+ * "stop and smell the roses" kind of way. Taking time immobile (i.e. admiring
+ * the landscape) alters how the day works, rewarding you for this behaviour
+ * with further aesthetics.
+ * 
+ */
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityStandardAssets.Characters.FirstPerson;
