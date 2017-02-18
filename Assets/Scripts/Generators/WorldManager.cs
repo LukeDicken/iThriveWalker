@@ -1,4 +1,21 @@
-﻿using System.Collections;
+﻿/*
+ * 
+ * WorldManager.cs -- Creates a world layout from a Tiled json file
+ * Created 2/11/17
+ * 
+ * This class parses a Tiled JSON file and instantiates the map it describes
+ * See http://www.mapeditor.org/ for more info on Tiled.
+ * Relies on the MiniJSON parser being available
+ * 
+ * Currently this works using the "ETID" custom property in Tiled,
+ * which is a numberic index to the relevant prefab to instantiate from the
+ * array that the class keeps in "gos". This needs to be better, and should
+ * eventually be a full json-driven system.
+ * 
+ */
+
+
+using System.Collections;
 using System.Collections.Generic;
 using System;
 using UnityEngine;
