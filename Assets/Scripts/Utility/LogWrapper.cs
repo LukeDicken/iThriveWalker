@@ -1,6 +1,6 @@
 ﻿/*
  * 
- * Logger.cs -- A Debug.Log() / Debug.Error() wrapper.
+ * LogWrapper.cs -- A Debug.Log() / Debug.Error() wrapper.
  * Created 2/18/17
  * 
  * Why a wrapper? Because then from one place we can change the log/error
@@ -19,11 +19,19 @@ using UnityEngine;
 
 public class LogWrapper { // does not need to inherit from MonoBehaviour
 
-    private static bool suppressErrors = false;
+    private static bool suppressErrors = false; // use this to turn all errors into logs
+    private static bool forceErrors = false; // use this to turn all logs into errors. Suppress errors takes precedence
 
 	public static void Log(string message)
     {
-        Debug.Log(message);
+        if (forceErrors && !(suppressErrors))
+        {
+            Error(message);
+        }
+        else
+        {
+            Debug.Log(message);
+        }
     }
 
     public static void Error(string message)

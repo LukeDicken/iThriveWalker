@@ -18,5 +18,10 @@ using UnityEngine.Analytics;
 
 public class AnalyticsWrapper {
 
-	
+    public static void logCustomEvent(string EventName, IDictionary<string, System.Object> data)
+    {
+        // add additional info to the event data here
+        Analytics.CustomEvent(EventName, data);
+        LogWrapper.Log("Analytics: Recorded event " + EventName);
+    }
 }

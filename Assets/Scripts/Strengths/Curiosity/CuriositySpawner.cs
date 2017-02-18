@@ -65,7 +65,7 @@ public class CuriositySpawner : MonoBehaviour {
 				int rand = Random.Range (0, this.points.Length);
 				GameObject newGO = GameObject.Instantiate (points [rand], pos, player.transform.rotation) as GameObject;
 				currentPOIs.Add (newGO);
-				Debug.Log (newGO.name);
+				LogWrapper.Log (newGO.name);
 				placeable = true;
 			}
 		}

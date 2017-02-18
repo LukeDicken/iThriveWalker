@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System;
 using UnityEngine;
 using MiniJSON;
-using UnityEngine.Analytics;
 
 public class WorldManager : MonoBehaviour {
 
@@ -78,7 +77,8 @@ public class WorldManager : MonoBehaviour {
 		int dataHash = data.GetHashCode ();
 		IDictionary<string, System.Object> eventData = new Dictionary<string, object> ();
 		eventData.Add ("mapHash", dataHash);
-		Analytics.CustomEvent ("Tiled map loaded", eventData); 
+        //Analytics.CustomEvent ("Tiled map loaded", eventData);
+        AnalyticsWrapper.logCustomEvent("Tiled map loaded", eventData);
 
 	}
 		
