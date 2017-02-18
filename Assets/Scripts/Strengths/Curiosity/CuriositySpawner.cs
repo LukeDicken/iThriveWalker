@@ -1,4 +1,20 @@
-﻿using System.Collections;
+﻿/*
+ * 
+ * CuriositySpawner.cs -- Provides code to support the "Curiosity" strength
+ * Created 2/11/17
+ * 
+ * As a proxy for curiosity, people who are curious might explore to see what
+ * something on the horizon is. They might repeat this behaviour to learn more
+ * about their environment. This class is a basic pass at that, by spawning
+ * objects, and when the player gets close to them, spawning another
+ * 
+ * There is some sanity check back to the WorldManager to ensure that the
+ * place that we are trying to spawn an object is actually valid for placement.
+ * This logic can probably get richer as the world does.
+ * 
+ */
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
