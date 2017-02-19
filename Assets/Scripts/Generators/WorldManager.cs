@@ -32,7 +32,7 @@ public class WorldManager : MonoBehaviour {
 	void Start () {
         em = this.gameObject.GetComponent<EntityManager>();
 		loadFromFile();
-	}
+    }
 	
 	// Update is called once per frame
 	void Update () {
