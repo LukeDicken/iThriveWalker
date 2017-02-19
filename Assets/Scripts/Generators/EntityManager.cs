@@ -33,21 +33,19 @@ public class EntityManager : MonoBehaviour {
             var asset = dict["asset"] as IDictionary<string, System.Object>;
             string prefab = asset["prefab"] as string;
             // find a prefab with that name
-            LogWrapper.Log(prefab);
             GameObject go = Resources.Load(prefab) as GameObject;
             
             // here we might want to add components and set them up with parameters
 
             entityLibrary.Add(etidName, go);
         }
+        
     }
 
     public GameObject getObjectFromEtidName(string name)
     {
-        LogWrapper.Log("Finding etid " + name);
         if (entityLibrary.ContainsKey(name))
         {
-            LogWrapper.Log("Etid exists");
             GameObject go = entityLibrary[name];
             return go;
         }
