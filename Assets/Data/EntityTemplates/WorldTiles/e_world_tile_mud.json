@@ -3,8 +3,5 @@
 	"asset":
 		{
 			"prefab":"Prefabs/Tiles/Mud"
-		},
-  "tags": [
-    "worldTile"
-  ]
+		}
 }

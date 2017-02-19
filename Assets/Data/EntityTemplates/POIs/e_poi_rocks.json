@@ -1,0 +1,10 @@
+{
+	"etid":"e_POI_Rocks",
+	"asset":
+		{
+			"prefab":"Prefabs/POIs/Rocks1"
+		},
+  "tags": [
+    "POI"
+  ]
+}
