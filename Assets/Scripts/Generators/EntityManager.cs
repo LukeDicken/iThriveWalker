@@ -46,13 +46,44 @@ public class EntityManager : MonoBehaviour {
                     var componentPieces = component.Value as Dictionary<string, System.Object>;
                     string componentName = componentPieces["componentName"] as string;
                     Type t = Type.GetType(componentName);
-                    if (go.GetComponent(t) == null)
+                    Component c = go.GetComponent(t);
+                    if (c == null)
                     {
-                        go.AddComponent(t);
+                        c = go.AddComponent(t);
                     }
 
                     // parse parameters
+                    var parameters = componentPieces["parameters"] as List<System.Object>;
+                    foreach (System.Object p in parameters)
+                    {
+                        var elements = p as Dictionary<string, System.Object>;
+                        string name = elements["name"] as string;
+                        //string type = elements["type"] as string;
+                        System.Object value = elements["value"];
+                        c.SendMessage("set" + name, value);
+                        //if(type.Equals("int"))
+                        //{
+                        //    int value = (int)elements["value"];
+                        //    c.SendMessage("set" + name, value);
+                        //}
+                        //else if(type.Equals("float"))
+                        //{
 
+                        //}
+                        //else if(type.Equals("string"))
+                        //{
+
+                        //}
+                        //else if(type.Equals("bool"))
+                        //{
+
+                        //}
+                        //else
+                        //{
+                        //    // unsupported parameter type
+                        //    LogWrapper.Error("Unsupported paramter type in " + etidName + ", parameter: " + name);
+                        //}
+                    }
                 }
             }
 
