@@ -3,5 +3,8 @@
 	"asset":
 		{
 			"prefab":"Prefabs/Tiles/LeafGreen"
-		}
+		},
+  "tags": [
+    "worldTile"
+  ]
 }

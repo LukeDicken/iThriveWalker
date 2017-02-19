@@ -2,5 +2,8 @@
 	"etid":"e_world_tile_water",
   "asset": {
     "prefab": "Prefabs/Tiles/Water"
-  }
+  },
+  "tags": [
+    "worldTile"
+  ]
 }

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using System;
 using UnityEngine;
 using MiniJSON;
 
@@ -34,8 +35,36 @@ public class EntityManager : MonoBehaviour {
             string prefab = asset["prefab"] as string;
             // find a prefab with that name
             GameObject go = Resources.Load(prefab) as GameObject;
+            go = Instantiate(go, new Vector3(-100,-100,-100), this.transform.rotation, this.transform); // this delinks the internal thing from the prefab itself?
             
-            // here we might want to add components and set them up with parameters
+            // here we want to add components and set them up with parameters
+            if(dict.ContainsKey("components"))
+            {
+                var components = dict["components"] as Dictionary<string, System.Object>;
+                foreach (KeyValuePair<string, System.Object> component in components)
+                {
+                    var componentPieces = component.Value as Dictionary<string, System.Object>;
+                    string componentName = componentPieces["componentName"] as string;
+                    Type t = Type.GetType(componentName);
+                    if (go.GetComponent(t) == null)
+                    {
+                        go.AddComponent(t);
+                    }
+
+                    // parse parameters
+
+                }
+            }
+
+            // we should maybe do some sort of clever tag thing?
+            List<string> tags = new List<string>();
+            List<System.Object> rawTags = dict["tags"] as List<System.Object>;
+            foreach (System.Object t in rawTags)
+            {
+                string sString = (string)t;
+                tags.Add(sString);
+            }
+            // but errr what do we do with it npw?
 
             entityLibrary.Add(etidName, go);
         }

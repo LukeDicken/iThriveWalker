@@ -6,8 +6,10 @@
   },
   "components": {
     "curiosity": {
-      "componentName": "",
-	  "parameter2" : 0
+      "componentName": "CuriosityPOI",
+      "parameters": {
+		  "radius": 0
+      }
     }
   },
   "tags": [
