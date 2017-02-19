@@ -25,9 +25,12 @@ public class WorldManager : MonoBehaviour {
 
 	public string fileName;
 	public GameObject[] gos;
-	public int[,] map;
+	public string[,] map;
+
+    private EntityManager em;
 	// Use this for initialization
 	void Start () {
+        em = this.gameObject.GetComponent<EntityManager>();
 		loadFromFile();
 	}
 	
@@ -36,12 +39,13 @@ public class WorldManager : MonoBehaviour {
 
 	}
 
-	public bool isValidForPlacement(int type)
+	public bool isValidForPlacement(string type)
 	{
-		return !(type == 0); // only water is not valid for placement
+        //return !(type == 0); // only water is not valid for placement
+        return true; // hack til we figure out how this works in the new entity system.
 	}
 
-	public int getTypeFromPosition(Vector2 position)
+	public string getTypeFromPosition(Vector2 position)
 	{
 		Vector2 notoffset = position + new Vector2 (15, 15);
 		int wholeX = (int)Math.Floor (notoffset.x / 15.0f);
@@ -69,7 +73,7 @@ public class WorldManager : MonoBehaviour {
 			// Debug.Log("Width " + width);
 			// Debug.Log("Height " + height);
 		int counter = 0;
-		map = new int[height, width];
+		map = new string[height, width];
 		for (int i = (int) height-1; i >= 0; i--) {
 			for (int j = 0; j < width; j++) {
 				// need the lookup
@@ -78,13 +82,13 @@ public class WorldManager : MonoBehaviour {
 				string index = tile.ToString ();
 				Dictionary<string, System.Object> thisTile = tiles[index] as Dictionary<string, System.Object>;
 				string etid = thisTile ["ETID"] as String;
-				int GOindex = Int32.Parse (etid);
-				//Debug.Log (GOindex);
-				GameObject go = this.gos[GOindex];
-				//Debug.Log (go.name);
-				GameObject newGO = GameObject.Instantiate (go, this.gameObject.transform.position+(j*Vector3.right*15)+(i*Vector3.forward*15), this.gameObject.transform.rotation) as GameObject;
+
+                //Debug.Log (GOindex);
+                GameObject go = em.getObjectFromEtidName(etid);
+                //Debug.Log (go.name);
+                GameObject newGO = GameObject.Instantiate (go, this.gameObject.transform.position+(j*Vector3.right*15)+(i*Vector3.forward*15), this.gameObject.transform.rotation) as GameObject;
 				newGO.transform.parent = this.gameObject.transform;
-				map [j, i] = GOindex;
+                map[j, i] = etid;
 				// instantiate
 				counter++;
 				//yield return new WaitForEndOfFrame ();

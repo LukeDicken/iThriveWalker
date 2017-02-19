@@ -1,0 +1,7 @@
+{
+	"etid":"e_world_tile_grass",
+	"asset":
+		{
+			"prefab":"Prefabs/Tiles/LeafGreen"
+		}
+}

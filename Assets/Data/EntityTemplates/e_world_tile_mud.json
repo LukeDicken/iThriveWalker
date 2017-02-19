@@ -1,0 +1,7 @@
+{
+	"etid":"e_world_tile_mud",
+	"asset":
+		{
+			"prefab":"Prefabs/Tiles/Mud"
+		}
+}

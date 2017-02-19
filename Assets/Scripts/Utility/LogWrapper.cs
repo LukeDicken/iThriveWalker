@@ -40,5 +40,9 @@ public class LogWrapper { // does not need to inherit from MonoBehaviour
         {
             Log("Suppressed Error: " + message);
         }
+        else
+        {
+            Debug.LogError(message);
+        }
     }
 }
