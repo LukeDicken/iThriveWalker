@@ -1,9 +1,15 @@
 {
-	"etid":"e_POI_Rocks",
-	"asset":
-		{
-			"prefab":"Prefabs/POIs/Rocks1"
-		},
+  
+	"etid": "e_POI_Rocks",
+  "asset": {
+    "prefab": "Prefabs/POIs/Rocks1"
+  },
+  "components": {
+    "curiosity": {
+      "componentName": "",
+	  "parameter2" : 0
+    }
+  },
   "tags": [
     "POI"
   ]
