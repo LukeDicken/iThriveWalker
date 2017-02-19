@@ -8,10 +8,12 @@ using MiniJSON;
 public class EntityManager : MonoBehaviour {
 
     private Dictionary<string, GameObject> entityLibrary;
+    private Dictionary<string, Dictionary<string, GameObject>> tagLibrary;
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
         entityLibrary = new Dictionary<string, GameObject>();
+        tagLibrary = new Dictionary<string, Dictionary<string, GameObject>>();
         loadFromJSON();
 	}
 	
@@ -88,19 +90,47 @@ public class EntityManager : MonoBehaviour {
             }
 
             // we should maybe do some sort of clever tag thing?
-            List<string> tags = new List<string>();
+            
             List<System.Object> rawTags = dict["tags"] as List<System.Object>;
             foreach (System.Object t in rawTags)
             {
                 string sString = (string)t;
-                tags.Add(sString);
+                if(!tagLibrary.ContainsKey(sString))
+                {
+                    // add to the library and initialise the underlying dict
+                    tagLibrary.Add(sString, new Dictionary<string, GameObject>());
+                }
+                tagLibrary[sString].Add(etidName, go);
             }
-            // but errr what do we do with it npw?
+            // but errr what do we do with the tags it now?
 
             entityLibrary.Add(etidName, go);
+
+            // keep a separate List of tag-indexed dictionaries?
+            /*
+             *  {
+             *      "Tag1": [ Entry1, Entry2 ...],
+             *      "Tag2": [ Entry2, ....],
+             *      "Tag3": [ Entry1 ]
+             *  }
+             * 
+             */
+            
+
         }
         
     }
+
+    public Dictionary<string, GameObject> getObjectsFromTag(string tag)
+    {
+        if(tagLibrary.ContainsKey(tag))
+        {
+            return tagLibrary[tag];
+        }
+        LogWrapper.Error("Couldn't find etids with tag " + tag);
+        return null;
+    }
+
 
     public GameObject getObjectFromEtidName(string name)
     {

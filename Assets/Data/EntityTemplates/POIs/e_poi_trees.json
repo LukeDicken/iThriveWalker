@@ -1,0 +1,25 @@
+{
+  
+	"etid": "e_POI_Trees",
+  "asset": {
+    "prefab": "Prefabs/POIs/Tree1"
+  },
+  "components": {
+    "curiosity": {
+      "componentName": "CuriosityPOI",
+      "parameters": [
+        {
+          "name": "radius",
+          "value": 7
+        },
+        {
+          "name": "dummystring",
+		  "value": "helloTrees"
+        }
+      ]
+    }
+  },
+  "tags": [
+    "POI"
+  ]
+}

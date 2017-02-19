@@ -18,8 +18,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-
-
 public class CuriositySpawner : MonoBehaviour {
 
     public EntityManager em;
@@ -30,9 +28,10 @@ public class CuriositySpawner : MonoBehaviour {
 	private List<GameObject> currentPOIs;
 	private List<GameObject> ignoreList;
 	private WorldManager wm;
+    List<GameObject> gos;
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
 		// grab the player GO so we can track where it goes
 
 		currentPOIs = new List<GameObject> ();
@@ -41,8 +40,13 @@ public class CuriositySpawner : MonoBehaviour {
         GameObject WorldManager = GameObject.FindGameObjectWithTag("WorldManager");
         wm = WorldManager.GetComponent<WorldManager> ();
         em = WorldManager.GetComponent<EntityManager>();
-		// spawn a POI
-		spawn();
+        Dictionary<string, GameObject> POIs = em.getObjectsFromTag("POI");
+        Dictionary<string, GameObject>.ValueCollection v = POIs.Values;
+        
+        gos = new List<GameObject>();
+        gos.AddRange(v);
+        // spawn a POI
+        spawn();
 	}
 	
 	// Update is called once per frame
@@ -68,6 +72,12 @@ public class CuriositySpawner : MonoBehaviour {
 		}
 	}
 
+    private GameObject getRandomPOI()
+    {
+        int randIndex = Random.Range(0, gos.Count);
+        return gos[randIndex];
+    }
+
 	public void spawn()
 	{
 		bool placeable = false;
@@ -77,12 +87,13 @@ public class CuriositySpawner : MonoBehaviour {
 			Vector2 r = Random.insideUnitCircle * spawnRadius;
 			Vector3 pos = new Vector3(r.x, 0, r.y) + player.transform.position;
             pos.y = 0;
-			// ask WorldManager if that type is placeable
-			// if yes, spawn a random object
-			// ensure a minimum distance
+            // ask WorldManager if that type is placeable
+            // if yes, spawn a random object
+            // ensure a minimum distance
+
 			if (Vector3.Magnitude (player.transform.position - pos) >= minDistance && wm.isValidForPlacement(wm.getTypeFromPosition(new Vector2(pos.x, pos.z)))) {
-                GameObject go = em.getObjectFromEtidName("e_POI_Rocks"); // need to swap to asking the EM by tag.
-				GameObject newGO = GameObject.Instantiate (go, pos, player.transform.rotation) as GameObject;
+               
+				GameObject newGO = GameObject.Instantiate (getRandomPOI(), pos, player.transform.rotation) as GameObject;
 				currentPOIs.Add (newGO);
 				LogWrapper.Log (newGO.name);
 				placeable = true;
